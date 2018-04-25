@@ -104,8 +104,8 @@ struct node *avl_right_rotate(struct node* b)
     a->right = b;
     b->left = c;
 
-    a->height = max(avl_height(a->left), avl_height(a->right)) + 1;
     b->height = max(avl_height(b->left), avl_height(b->right)) + 1;
+    a->height = max(avl_height(a->left), avl_height(a->right)) + 1;
 
     return a;
 }
@@ -128,7 +128,7 @@ struct node *avl_balance(struct node* node)
  
     // LR
     if (node_bf > 1 && left_bf < 0) {
-        node->left =  avl_left_rotate(node->left);
+        node->left = avl_left_rotate(node->left);
         return avl_right_rotate(node);
     }
  
