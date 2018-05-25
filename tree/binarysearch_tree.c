@@ -36,10 +36,10 @@ struct node *tree_smallest(struct node* node)
 {
     struct node* current;
     current = node;
- 
+
     while (current->left != NULL)
         current = current->left;
- 
+
     return current;
 }
 
@@ -82,13 +82,13 @@ struct node *tree_search(struct node *node, int key)
 
     else if (node->key == key)
         return tree_remove(node);
-    
+
     else if (key < node->key)
         node->left = tree_search(node->left, key);
-        
+
     else if (key > node->key)
         node->right = tree_search(node->right, key);
-    
+
     // para os valores anteriores nao se perderem.
     return node;
 }
@@ -108,6 +108,15 @@ void tree_preorder(struct node *node)
         printf("%d ", node->key);
         tree_preorder(node->left);
         tree_preorder(node->right);
+    }
+}
+
+void tree_postorder(struct node *node)
+{
+    if (node != NULL) {
+        tree_postorder(node->left);
+        tree_postorder(node->right);
+        printf("%d ", node->key);
     }
 }
 
@@ -133,7 +142,7 @@ struct node *tree_load()
     return tree;
 }
 
-int main() 
+int main()
 {
     struct node *tree;
     tree = tree_load();
@@ -141,6 +150,8 @@ int main()
     tree_preorder(tree);
     printf("\n");
     tree_inorder(tree);
+    printf("\n");
+    tree_postorder(tree);
 
     tree_free(tree);
     return 0;
