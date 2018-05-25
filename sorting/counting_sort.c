@@ -70,7 +70,7 @@ void counting_sort(int *array, int size)
         new_array[occurrences[array[i] - 1]--] = array[i]; 
         print_array(new_array, size);
     }
-    
+
     tmp = array;
     array = new_array;
 
@@ -83,7 +83,7 @@ int main()
 {
     int size, *array;
     scanf("%d", &size);
-    
+
     array = malloc(size * sizeof(int));
     read_array(array, size);
     print_array(array, size);
